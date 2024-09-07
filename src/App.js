@@ -1,4 +1,3 @@
-
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Product from './components/Product';
 import Contact from './components/Contact';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
 import Vegetable from './components/Vegetable';
 import Fruits from './components/Fruits';
 import Crockery from './components/Crockery';
@@ -21,45 +20,65 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import CartContext, { CartProvider } from './components/CartContext';
 import Cart from './components/Cart';
+
 function App() {
   const appStyle = {
-    backgroundImage: 'url("https://wallpaperaccess.com/full/4754292.jpg")', // Update this path to your actual image location
+    position: 'relative', // Needed for overlay positioning
+    backgroundImage: 'url("https://tse3.mm.bing.net/th?id=OIP.VM9O_pU15c59ydu4OFGawgHaEK&pid=Api&P=0&h=220")',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
+    backgroundPosition: 'center',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-   textAlign:'center'
+    justifyContent: 'space-between',
+    textAlign: 'center',
   };
+
+  const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black overlay
+    zIndex: 1,
+  };
+
+  const contentStyle = {
+    position: 'relative',
+    zIndex: 2,
+    flex: 1,
+  };
+
   return (
-    <div  style={appStyle}>
-    <CartProvider>
-    <Header/>
-    <Routes>
-    
-      <Route>
-      <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Product />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/signin' element={<Login/>}/>
-        <Route path="/products/vegetables" element={<Vegetable />} />
-        <Route path="/products/fruits" element={<Fruits/>} />
-        <Route path="/products/crockery" element={<Crockery/>} />
-        <Route path="/products/sports" element={<Sports/>} />
-        <Route path="/products/dresses" element={<Dresses/>} />
-        <Route path="/products/meat" element={<Meat/>} />
-        <Route path="/products/shoes" element={<Shoes/>} />
-        <Route path="/products/jewel" element={<Jewel/>} />
-        <Route path="/products/accessories" element={<Accessories/>} />
-        <Route path='/CartContext' element={<CartContext/>}/>
-        <Route path='/Cart' element={<Cart/>}/>
-      </Route>
-    </Routes>
-     <Footer/>
-     </CartProvider>
+    <div style={appStyle}>
+      <div style={overlayStyle}></div> {/* Overlay */}
+      <CartProvider>
+        <div style={contentStyle}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/products/vegetables" element={<Vegetable />} />
+            <Route path="/products/fruits" element={<Fruits />} />
+            <Route path="/products/crockery" element={<Crockery />} />
+            <Route path="/products/sports" element={<Sports />} />
+            <Route path="/products/dresses" element={<Dresses />} />
+            <Route path="/products/meat" element={<Meat />} />
+            <Route path="/products/shoes" element={<Shoes />} />
+            <Route path="/products/jewel" element={<Jewel />} />
+            <Route path="/products/accessories" element={<Accessories />} />
+            <Route path="/cart-context" element={<CartContext />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
+        <Footer />
+      </CartProvider>
     </div>
   );
 }
